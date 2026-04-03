@@ -1,9 +1,21 @@
 :root {
-    --background-color: #2c2c2c;     /* page background */
-    --navbar-background: #222;        /* navbar background */
-    --navbar-hover-background: #555;      /* button background */
-    --accent-color: #f39c12;      /* highlight, hover, etc. */
-    --text-color: #ffffff;        /* text */
+    /* Backgrounds */
+    --background-color: #1e1e2f;
+    --navbar-background: #111122;
+    --navbar-hover-background: #2c2c44;
+
+    /* Accent / highlights */
+    --accent-color: #ff6f61;
+    --accent-hover: #ff856f;
+
+    /* Text */
+    --text-color: #f5f5f5;
+    --subtext-color: #d0d0d0;
+
+    /* Price colors */
+    --price-low: #10c25a;    /* cheap */
+    --price-mid: #f1c40f;    /* mid-range */
+    --price-high: #c71704;   /* expensive */
 }
 
 html{
@@ -16,6 +28,29 @@ body {
     padding: 0;
 }
 
+.sections {
+    display: flex;
+    flex-direction: row;
+    height: 92.5%;
+}
+
+.left-section {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.right-section {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--navbar-background);
+    color: var(--text-color);
+}
 
 .index-header {
     display: flex;
@@ -61,23 +96,52 @@ body {
 
 .games-container {
     display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-top: 20px;
+}
+
+#games-list-title {
+    text-align: center;
+    color: var(--text-color);
+    margin: 0px;
+    margin-top: 10px;
+    font-size: 2rem;
+    max-width: 75%;
 }
 
 .game-cards {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+
     background-color: var(--accent-color);
     color: var(--text-color);
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
-    width: 20%;
-    height: 20%;
+
+    width: 250px;
+    min-height: 300px;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* card content but ONLY price and genre */
+.mini-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-cards:hover {
+    background-color: var(--accent-hover);
 }
 
 .game-cards h2, .game-cards p {
@@ -92,5 +156,23 @@ body {
 .game-cards p {
     font-size: 1.25rem;
     color: var(--navbar-hover-background);
+    font-weight: bold;
+}
+
+.game-cards p:last-of-type {
+    justify-self: flex-end;
+}
+
+.game-cards button {
+    background-color: var(--navbar-background);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.price-value {
+    font-size: 1.5rem;
     font-weight: bold;
 }
