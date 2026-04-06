@@ -30,7 +30,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:5223/games/12
+DELETE http://localhost:5223/games/16
 
 ###
 

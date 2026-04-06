@@ -1,24 +1,30 @@
+/* =========================
+    VARIABLES
+========================= */
 :root {
-    /* Backgrounds */
     --background-color: #1e1e2f;
     --navbar-background: #111122;
     --navbar-hover-background: #2c2c44;
 
-    /* Accent / highlights */
     --accent-color: #ff6f61;
     --accent-hover: #ff856f;
 
-    /* Text */
     --text-color: #f5f5f5;
     --subtext-color: #d0d0d0;
 
-    /* Price colors */
-    --price-low: #10c25a;    /* cheap */
-    --price-mid: #f1c40f;    /* mid-range */
-    --price-high: #c71704;   /* expensive */
+    --price-low: #10c25a;
+    --price-mid: #f1c40f;
+    --price-high: #c71704;
 }
 
-html{
+/* =========================
+    BASE
+========================= */
+* {
+    box-sizing: border-box;
+}
+
+html {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--background-color);
 }
@@ -28,32 +34,47 @@ body {
     padding: 0;
 }
 
+/* =========================
+    LAYOUT
+========================= */
 .sections {
     display: flex;
-    flex-direction: row;
-    height: 92.5%;
 }
 
+/* LEFT SIDE */
 .left-section {
     width: 80%;
+    margin-right: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    height: 100%;
 }
 
+/* RIGHT SIDEBAR - CART SECTION */
 .right-section {
+    position: fixed;
+    top: 50px;
+    right: 0;
+
     width: 20%;
-    height: 100%;
+    height: calc(100vh - 50px);
+
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+
     background-color: var(--navbar-background);
     color: var(--text-color);
+
+    overflow-y: auto;
+    border-left: 1px solid var(--accent-color);
 }
 
+/* =========================
+    HEADER
+========================= */
 .index-header {
     position: sticky;
     top: 0;
@@ -62,30 +83,36 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    height: 50px;
     padding: 10px 20px;
+
     background-color: var(--navbar-background);
     color: var(--text-color);
-    height: 50px;
     border-bottom: 1px solid var(--accent-color);
 }
 
-.index-header h1 {
+.index-header a {
     margin: 0;
-    font-size: 3rem;
-    letter-spacing: 0.25rem;
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+
+    color: var(--text-color);
+    text-decoration: none;
 }
 
+/* Profile button */
 .btn-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: var(--navbar-background);
-    color: var(--text-color);
-    border-radius: 50%;
+
     width: 40px;
     height: 40px;
+    border-radius: 50%;
+
+    background-color: var(--navbar-background);
+    cursor: pointer;
 }
 
 .btn-container:hover {
@@ -93,87 +120,93 @@ body {
 }
 
 #profile-btn {
-    background-color: var(--accent-color);
-    border-radius: 50%;
     width: 75%;
     height: 75%;
     border: none;
+    border-radius: 50%;
+
+    background-color: var(--accent-color);
+    cursor: pointer;
 }
 
+/* =========================
+    GAMES GRID
+========================= */
 .games-container {
     display: grid;
-    grid-template-columns: auto auto auto auto;
-    padding: 10px;
+    grid-template-columns: repeat(5, 1fr);;
+    gap: 30px;
+    padding: 20px;
 }
 
 #games-list-title {
     text-align: center;
     color: var(--text-color);
-    margin: 0px;
-    margin-top: 10px;
+    margin: 10px 0;
     font-size: 2rem;
-    max-width: 75%;
 }
 
+/* =========================
+    GAME CARD
+========================= */
 .game-cards {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 
-    background-color: var(--accent-color);
-    color: var(--text-color);
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
-
     width: 250px;
     min-height: 300px;
+    padding: 20px;
+    border-radius: 10px;
+
+    background-color: var(--accent-color);
+    color: var(--text-color);
+
+    transition: 0.2s ease;
+}
+
+.game-cards:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-5px);
 }
 
 .card-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    text-align: center;
     height: 100%;
 }
 
-/* card content but ONLY price and genre */
 .mini-content {
     display: flex;
     flex-direction: column;
 }
 
-.game-cards:hover {
-    background-color: var(--accent-hover);
-}
-
-.game-cards h2, .game-cards p {
-    text-align: center;
-}
-
 .game-cards h2 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     color: var(--navbar-background);
 }
 
 .game-cards p {
-    font-size: 1.25rem;
-    color: var(--navbar-hover-background);
+    font-size: 1.1rem;
+    color: var(--subtext-color);
     font-weight: bold;
 }
 
-.game-cards p:last-of-type {
-    justify-self: flex-end;
-}
-
 .game-cards button {
+    margin-top: auto;
+
     background-color: var(--navbar-background);
     color: var(--text-color);
+
     border: none;
     padding: 10px 20px;
-    cursor: pointer;
     border-radius: 5px;
+
+    cursor: pointer;
 }
 
 .price-value {

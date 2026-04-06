@@ -59,6 +59,7 @@ function addToCart(game) {
         return;
     }
     alert(`Added "${game.name}" to cart!`);
+    console.log(cart);
     cart.push(game);
 }
 
