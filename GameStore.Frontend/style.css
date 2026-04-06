@@ -40,10 +40,12 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    height: 100%;
 }
 
 .right-section {
     width: 20%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,6 +55,10 @@ body {
 }
 
 .index-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -95,11 +101,9 @@ body {
 }
 
 .games-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 30px;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    padding: 10px;
 }
 
 #games-list-title {
