@@ -107,4 +107,8 @@ function checkout() {
     updateCartTotal();
 }
 
+function openProfile() {
+    alert("Profile page is under construction!");
+}
+
 let cart = [];
