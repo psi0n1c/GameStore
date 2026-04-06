@@ -34,6 +34,10 @@ body {
     padding: 0;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 /* =========================
     LAYOUT
 ========================= */
@@ -70,6 +74,10 @@ body {
 
     overflow-y: auto;
     border-left: 1px solid var(--accent-color);
+}
+
+.right-section h3 {
+    margin-top: 0;
 }
 
 /* =========================
@@ -193,7 +201,6 @@ body {
 .game-cards p {
     font-size: 1.1rem;
     color: var(--subtext-color);
-    font-weight: bold;
 }
 
 .game-cards button {
@@ -211,5 +218,68 @@ body {
 
 .price-value {
     font-size: 1.5rem;
-    font-weight: bold;
+}
+
+/* =========================
+    CART
+========================= */
+
+#cart-items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+
+    min-height: 50px;
+
+    background-color: var(--accent-color);
+
+    transform: translateX(30px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.cart-item.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.cart-item div {
+    flex: 1;
+    text-align: left;
+}
+
+.cart-item div:last-child {
+    text-align: right;
+}
+
+.cart-item:hover {
+    background-color: var(--accent-hover);
+}
+
+#checkout-btn {
+    margin-top: auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+
+    background-color: var(--accent-color);
+    color: var(--text-color);
+
+    cursor: pointer;
+}
+
+#checkout-btn:hover {
+    background-color: var(--accent-hover);
 }
