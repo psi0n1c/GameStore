@@ -61,6 +61,14 @@ function renderGames(games) {
     });
 }
 
+// --------------------------
+//  UPDATES THE LOCAL STORAGE CART DATA WHEN CALLED
+//  AND THEN RERENDERS THE CART DIV WITH THE NEW CART DATA IN LOCAL STORAGE
+// --------------------------
+function saveLocalCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateSavedCart();
+}
 
 function addToCart(game) {
     if (cart.find(item => item.id === game.id)) {
@@ -74,6 +82,7 @@ function addToCart(game) {
     addCartItemToDOM(game);
 }
 
+// THIS ADDS THE CART ITEM TO THE CART DIV WITH ANIMATION
 function addCartItemToDOM(game) {
     const cartItemsContainer = document.getElementById("cart-items");
 
@@ -98,13 +107,14 @@ function addCartItemToDOM(game) {
 
 }
 
-
+// THIS UPDATES THE TOTAL AMOUNT IN THE CART DIV
 function updateCartTotal() {
     const totalAmount = document.getElementById("total-amount");
     const total = cart.reduce((sum, item) => sum + item.price, 0);
     totalAmount.textContent = `$${total.toFixed(2)}`;
 }
 
+// THIS RENDERS THE CART DIV WITH THE CART DATA IN LOCAL STORAGE ON PAGE LOAD
 function renderCartFromStorage() {
     const cartItemsContainer = document.getElementById("cart-items");
     cartItemsContainer.innerHTML = "";
@@ -131,6 +141,7 @@ function renderCartFromStorage() {
 }
 
 
+// THIS UPDATES THE CART DIV WITH THE NEW CART DATA IN LOCAL STORAGE
 function updateSavedCart() {
     const cartItemsContainer = document.getElementById("cart-items");
     cartItemsContainer.innerHTML = "";
@@ -151,6 +162,7 @@ function removeGameFromCart(cartItem, game) {
 
 }
 
+// THIS UPDATES THE NUMBERING OF THE CART ITEMS AFTER ONE IS REMOVED
 function refreshCartItemCounters() {
     const items = document.querySelectorAll(".cart-item");
     items.forEach((item, index) => {
@@ -159,17 +171,35 @@ function refreshCartItemCounters() {
     });
 }
 
-
+// CART CHECKOUT THEN EMPTY THE CART
 function checkout() {
     if (cart.length === 0) {
         alert("Your cart is empty!");
         return;
     }
     alert(`Thank you for your purchase of ${cart.length} game(s)! Total: $${cart.reduce((sum, item) => sum + item.price, 0).toFixed(2)}`);
+    emptyCart();
+}
+
+// THIS CLEARS THE CART WHEN BUTTON TO CLEAR IS PRESSED
+function clearCart() {
+    if (cart.length === 0) {
+        alert("Your cart is already empty!");
+        return;
+    }
+    if (confirm("Are you sure you want to clear your cart?")) {
+        emptyCart();
+    }
+}
+
+// THIS CLEARS THE ACTUAL CART DIV
+function emptyCart() {
     cart = [];
     document.getElementById("cart-items").innerHTML = "";
     updateCartTotal();
+
 }
+
 
 function openProfile() {
     alert("Profile page is under construction!");
