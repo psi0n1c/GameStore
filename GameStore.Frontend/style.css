@@ -245,7 +245,7 @@ body {
 
     background-color: var(--accent-color);
 
-    transform: translateX(30px);
+    transform: translateX(15px);
     opacity: 0;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
