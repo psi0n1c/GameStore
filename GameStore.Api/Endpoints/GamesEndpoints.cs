@@ -14,16 +14,43 @@ public static class GamesEndpoints
         var group = app.MapGroup("/games");
 
         // GET /games
-        group.MapGet("/", async (GameStoreContext dbContext)
-         => await dbContext.Games.Include(game => game.Genre).Select(game => new GameSummaryDto(
-            game.Id,
-            game.Name,
-            game.Genre!.Name,
-            game.Price,
-            game.ReleaseDate
-         ))
-         .AsNoTracking()
-         .ToListAsync());
+        // group.MapGet("/", async (GameStoreContext dbContext)
+        //  => await dbContext.Games.Include(game => game.Genre).Select(game => new GameSummaryDto(
+        //     game.Id,
+        //     game.Name,
+        //     game.Genre!.Name,
+        //     game.Price,
+        //     game.ReleaseDate
+        //  ))
+        //  .AsNoTracking()
+        //  .ToListAsync());
+
+        // /games?genre=
+        group.MapGet("/", async (string? genre, GameStoreContext dbContext) =>
+        {
+            var query = dbContext.Games
+                .Include(g => g.Genre)
+                .AsNoTracking()
+                .AsQueryable();
+ 
+            if (!string.IsNullOrWhiteSpace(genre))
+            {
+                query = query.Where(g => g.Genre != null && g.Genre.Name == genre);
+            }
+ 
+            var games = await query
+                .Select(g => new GameSummaryDto(
+                    g.Id,
+                    g.Name,
+                    g.Genre != null ? g.Genre.Name : "",
+                    g.Price,
+                    g.ReleaseDate
+                ))
+            .ToListAsync();
+ 
+            return Results.Ok(games);
+        });
+
 
         // GET /games/{id}
         group.MapGet("/{id}", async (int id, GameStoreContext dbContext) =>

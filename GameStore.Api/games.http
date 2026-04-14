@@ -6,6 +6,10 @@ GET http://localhost:5223/games/2
 
 ###
 
+GET http://localhost:5223/games?genre=Platformer
+
+###
+
 POST http://localhost:5223/games
 Content-Type: application/json
 

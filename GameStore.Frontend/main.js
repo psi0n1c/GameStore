@@ -15,6 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function renderGames(games) {
     const container = document.querySelector(".games-container");
+
+    container.innerHTML = "";
+
+    allGames = games
+    gamesDisplayed = games
+
     games.forEach(game => {
         const content = document.createElement("div");
         content.classList.add("card-content");
@@ -22,7 +28,7 @@ function renderGames(games) {
         miniContent.classList.add("mini-content");
 
         const gameCard = document.createElement("div");
-        gameCard.classList.add("game-cards");
+        gameCard.classList.add("game-cards", "text-white");
 
         const header = document.createElement("h2");
         header.textContent = game.name;
@@ -47,6 +53,7 @@ function renderGames(games) {
         price.appendChild(priceValue);
 
         const addToCartBtn = document.createElement("button");
+        addToCartBtn.classList.add("text-white")
         addToCartBtn.textContent = "Add to Cart";
         addToCartBtn.addEventListener("click", () => addToCart(game));
 
@@ -58,6 +65,7 @@ function renderGames(games) {
         gameCard.appendChild(content);
         gameCard.appendChild(addToCartBtn);
         container.appendChild(gameCard);
+
     });
 }
 
@@ -93,7 +101,7 @@ function addCartItemToDOM(game) {
     <div class="cart-item-counter bold">${cart.length}.</div>
     <div class="cart-item-name bold">${game.name}</div>
     <div class="cart-item-price bold">$${game.price}</div>
-    <button class="cart-item-remove"><i class="fa-solid fa-trash"></i></button>
+    <button class="cart-item-remove text-white"><i class="fa-solid fa-trash"></i></button>
     `;
 
     cartItemsContainer.appendChild(cartItem);
@@ -202,9 +210,33 @@ function emptyCart() {
 
 }
 
+// FILTER THE GAME CARDS FROM DROPDOWN
+function genreFilter(selectedGenre) {
+    if (selectedGenre == "All"){
+        fetch(`http://localhost:5223/games`)
+        .then(response => response.json())
+        .then(games => {
+            renderGames(games);
+        })
+        .catch(err => console.error("Error fetching games:", err));
+    }
+    else{
+        fetch(`http://localhost:5223/games?genre=${selectedGenre}`)
+        .then(response => response.json())
+        .then(games => {
+            renderGames(games);
+        })
+        .catch(err => console.error("Error fetching games:", err));
+    }
+}
+
 
 function openProfile() {
     alert("Profile page is under construction!");
+    console.log(allGames)
+    console.log(gamesDisplayed)
 }
 
 let cart = [];
+let allGames = [];
+let gamesDisplayed = [];

@@ -7,6 +7,7 @@
     --navbar-hover-background: #2c2c44;
 
     --accent-color: #ff6f61;
+    --accent-color-darker: #fe5e4f;
     --accent-hover: #ff856f;
 
     --text-color: #f5f5f5;
@@ -36,6 +37,10 @@ body {
 
 .bold {
     font-weight: bold;
+}
+
+.text-white {
+    color: var(--text-color);
 }
 
 /* =========================
@@ -96,7 +101,6 @@ body {
     padding: 10px 20px;
 
     background-color: var(--navbar-background);
-    color: var(--text-color);
     border-bottom: 1px solid var(--accent-color);
 }
 
@@ -104,8 +108,6 @@ body {
     margin: 0;
     font-size: 2rem;
     letter-spacing: 0.2rem;
-
-    color: var(--text-color);
     text-decoration: none;
 }
 
@@ -149,9 +151,30 @@ body {
 
 #games-list-title {
     text-align: center;
-    color: var(--text-color);
     margin: 10px 0;
     font-size: 2rem;
+}
+
+#filters-container {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#genre-dropdown {
+    margin-left: 10px;
+    background-color: var(--navbar-background);
+    border: 1px solid var(--accent-color);
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#genre-dropdown:focus {
+    outline: none;
+    border-color: var(--accent-hover);
 }
 
 /* =========================
@@ -169,7 +192,6 @@ body {
     border-radius: 10px;
 
     background-color: var(--accent-color);
-    color: var(--text-color);
 
     transition: 0.2s ease;
 }
@@ -207,7 +229,6 @@ body {
     margin-top: auto;
 
     background-color: var(--navbar-background);
-    color: var(--text-color);
 
     border: none;
     padding: 10px 20px;
@@ -283,7 +304,6 @@ body {
     border-radius: 5px;
 
     background-color: var(--accent-color);
-    color: var(--text-color);
 
     cursor: pointer;
 }
@@ -295,7 +315,6 @@ body {
 .cart-item-remove {
     background: none;
     border: none;
-    color: var(--text-color);
     cursor: pointer;
     font-size: 1.2rem;
 }
