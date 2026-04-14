@@ -93,6 +93,7 @@ function addCartItemToDOM(game) {
     <div class="cart-item-counter bold">${cart.length}.</div>
     <div class="cart-item-name bold">${game.name}</div>
     <div class="cart-item-price bold">$${game.price}</div>
+    <button class="cart-item-remove"><i class="fa-solid fa-trash"></i></button>
     `;
 
     cartItemsContainer.appendChild(cartItem);
@@ -101,7 +102,7 @@ function addCartItemToDOM(game) {
 
     cartItem.classList.add("show");
 
-    cartItem.addEventListener("click", () => removeGameFromCart(cartItem, game));
+    cartItem.querySelector(".cart-item-remove").addEventListener("click", () => removeGameFromCart(cartItem, game));
 
     updateCartTotal();
 
@@ -129,12 +130,13 @@ function renderCartFromStorage() {
             <div class="cart-item-counter bold">${counter}.</div>
             <div class="cart-item-name bold">${item.name}</div>
             <div class="cart-item-price bold">$${item.price}</div>
+            <button class="cart-item-remove"><i class="fa-solid fa-trash"></i></button>
         `;
 
         cartItemsContainer.appendChild(cartItem);
         counter++;
 
-        cartItem.addEventListener("click", () => removeGameFromCart(cartItem, item));
+        cartItem.querySelector(".cart-item-remove").addEventListener("click", () => removeGameFromCart(cartItem, item));
     };
 
     updateCartTotal();

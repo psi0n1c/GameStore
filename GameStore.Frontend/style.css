@@ -291,3 +291,25 @@ body {
 #checkout-btn:hover, #clear-cart-btn:hover {
     background-color: var(--accent-hover);
 }
+
+.cart-item-remove {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.cart-item-remove:hover {
+    color: var(--navbar-background);
+}
+
+.cart-item-counter {
+    max-width: 50px;
+    text-align: center;
+}
+
+.cart-item-name {
+    flex: 2;
+    padding: 0 10px;
+}
