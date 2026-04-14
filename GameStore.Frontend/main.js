@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("http://localhost:5223/games")  // listening port of the backend
         .then(response => response.json())
         .then(games => {
+            originalGames = games;
+            displayedGames = [...games]
             renderGames(games);
         })
         .catch(err => console.error("Error fetching games:", err));
@@ -18,8 +20,6 @@ function renderGames(games) {
 
     container.innerHTML = "";
 
-    allGames = games
-    gamesDisplayed = games
 
     games.forEach(game => {
         const content = document.createElement("div");
@@ -138,7 +138,7 @@ function renderCartFromStorage() {
             <div class="cart-item-counter bold">${counter}.</div>
             <div class="cart-item-name bold">${item.name}</div>
             <div class="cart-item-price bold">$${item.price}</div>
-            <button class="cart-item-remove"><i class="fa-solid fa-trash"></i></button>
+            <button class="cart-item-remove text-white"><i class="fa-solid fa-trash"></i></button>
         `;
 
         cartItemsContainer.appendChild(cartItem);
@@ -160,6 +160,10 @@ function updateSavedCart() {
 }
 
 function removeGameFromCart(cartItem, game) {
+    const confirmDelete = confirm(`Remove ${game.name} from cart?`)
+
+    if(!confirmDelete) return;
+
     cart = cart.filter(item => item.id !== game.id);
     localStorage.setItem("cart", JSON.stringify(cart));
     cartItem.classList.remove("show");
@@ -216,6 +220,8 @@ function genreFilter(selectedGenre) {
         fetch(`http://localhost:5223/games`)
         .then(response => response.json())
         .then(games => {
+            originalGames = games;
+            displayedGames = [...games];
             renderGames(games);
         })
         .catch(err => console.error("Error fetching games:", err));
@@ -224,19 +230,37 @@ function genreFilter(selectedGenre) {
         fetch(`http://localhost:5223/games?genre=${selectedGenre}`)
         .then(response => response.json())
         .then(games => {
+            originalGames = games;
+            displayedGames = [...games];
             renderGames(games);
         })
         .catch(err => console.error("Error fetching games:", err));
     }
 }
 
+function sortGames(type){
+    const sorted = [...displayedGames];
+
+    switch(type) {
+        case "asc":
+            sorted.sort((a,b) => a.price - b.price);
+            break;
+        case "desc":
+            sorted.sort((a,b) => b.price - a.price);
+            break;
+        default:
+            displayedGames = [...originalGames];
+            renderGames(originalGames);
+            return;
+    }
+    displayedGames = sorted
+    renderGames(sorted)
+}
 
 function openProfile() {
     alert("Profile page is under construction!");
-    console.log(allGames)
-    console.log(gamesDisplayed)
 }
 
 let cart = [];
-let allGames = [];
-let gamesDisplayed = [];
+let originalGames = [];
+let displayedGames = [];

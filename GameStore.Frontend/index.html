@@ -15,15 +15,25 @@
         <div class="left-section">
             <h1 id="games-list-title" class="text-white">Available Games</h1>
             <div id="filters-container">
-                <p class="text-white">Filter by genre:</p>
-                <select name="genre-dropdown" id="genre-dropdown" class="text-white" onchange="genreFilter(this.value)">
-                    <option value="All">All genres</option>
-                    <option value="Fighting">Fighting</option>
-                    <option value="RPG">RPG</option>
-                    <option value="Platformer">Platformer</option>
-                    <option value="Racing">Racing</option>
-                    <option value="Sports">Sports</option>
-                </select>
+                <div>
+                    <p class="text-white">Filter by genre:</p>
+                    <select name="genre-dropdown" class="dropdown text-white" onchange="genreFilter(this.value)">
+                        <option value="All">All genres</option>
+                        <option value="Fighting">Fighting</option>
+                        <option value="RPG">RPG</option>
+                        <option value="Platformer">Platformer</option>
+                        <option value="Racing">Racing</option>
+                        <option value="Sports">Sports</option>
+                    </select>
+                </div>
+                <div>
+                    <p class="text-white">Sort by price:</p>
+                    <select name="filter-price-dropdown" class="dropdown text-white" onchange="sortGames(this.value)">
+                        <option value="def">Default</option>
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                    </select>
+                </div>
             </div>
             <div class="games-container"></div>
         </div>
