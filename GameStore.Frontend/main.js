@@ -1,3 +1,15 @@
+let cart = [];
+let originalGames = [];
+let displayedGames = [];
+
+const modal = document.getElementById("confirm-modal");
+const modalText = document.getElementById("modal-text");
+const modalCancel = document.getElementById("modal-cancel");
+const modalConfirm = document.getElementById("modal-confirm");
+
+let pendingDelete = null;
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const cartData = localStorage.getItem("cart");
     if (cartData) {
@@ -160,20 +172,18 @@ function updateSavedCart() {
 }
 
 function removeGameFromCart(cartItem, game) {
-    const confirmDelete = confirm(`Remove ${game.name} from cart?`)
+    showConfirmModal(game, () => {
+        cart = cart.filter(item => item.id !== game.id);
+        localStorage.setItem("cart", JSON.stringify(cart));
 
-    if(!confirmDelete) return;
+        cartItem.classList.remove("show");
 
-    cart = cart.filter(item => item.id !== game.id);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    cartItem.classList.remove("show");
-
-    setTimeout(() => {
-        cartItem.remove();
-        updateCartTotal();
-        refreshCartItemCounters();
-    }, 300);
-
+        setTimeout(() => {
+            cartItem.remove();
+            updateCartTotal();
+            refreshCartItemCounters();
+        }, 300);
+    });
 }
 
 // THIS UPDATES THE NUMBERING OF THE CART ITEMS AFTER ONE IS REMOVED
@@ -257,10 +267,29 @@ function sortGames(type){
     renderGames(sorted)
 }
 
+
 function openProfile() {
     alert("Profile page is under construction!");
 }
 
-let cart = [];
-let originalGames = [];
-let displayedGames = [];
+function showConfirmModal(game, onConfirm) {
+    modalText.textContent = `Remove "${game.name}" from cart?`;
+
+    modal.classList.remove("hidden");
+
+    pendingDelete = () => {
+        onConfirm();
+        closeModal();
+    };
+}
+
+function closeModal() {
+    modal.classList.add("hidden");
+    pendingDelete = null;
+}
+
+modalCancel.addEventListener("click", closeModal);
+
+modalConfirm.addEventListener("click", () => {
+    if (pendingDelete) pendingDelete();
+});
