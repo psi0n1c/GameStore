@@ -94,25 +94,6 @@ DELETE /games/{id}
 
 ---
 
-## 📦 Project Structure 📦
-
-```
-GameStore/
-│
-├── GameStore.Api/
-│   ├── Endpoints/
-│   ├── Models/
-│   ├── Dtos/
-│   └── Data/
-│
-├── frontend/
-│   ├── index.html
-│   ├── styles.css
-│   └── script.js
-```
-
----
-
 ## ▶️ Getting Started ▶️
 
 ### 1. Clone the repository
