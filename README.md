@@ -94,7 +94,7 @@ DELETE /games/{id}
 
 ---
 
-## ▶️ Getting Started ▶️
+## Installation
 
 ### 1. Clone the repository
 
@@ -117,11 +117,11 @@ Open `index.html` in your browser
 
 ## 💡 Future Improvements 💡
 
-* 🔍 Search functionality
-* 📄 Pagination
-* 🔐 User authentication
-* 🧾 Order history
-* 💬 Responsiveness
+- [ ] 🔍 Search functionality
+- [ ] 📄 Pagination
+- [ ] 🔐 User authentication
+- [ ] 🧾 Order history
+- [ ] 💬 Responsiveness
 
 ---
 
